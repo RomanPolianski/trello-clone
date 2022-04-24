@@ -10,13 +10,14 @@ const App = () => {
     <div className="listContainer">
       {lists.map((list) => (
         <List
+          boardId={list.boardId}
           key={list.boardId}
           title={list.boardName}
           taskList={list.taskList}
         />
       ))}
       <div>
-        <ActionButton list="list" card="" />
+        <ActionButton list="list" card="" boardId={null} />
       </div>
     </div>
   );

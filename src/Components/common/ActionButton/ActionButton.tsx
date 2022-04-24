@@ -2,16 +2,31 @@ import { Button, Card, Icon } from '@material-ui/core';
 import { FC, SetStateAction, useState } from 'react';
 import s from './ActionButton.module.css';
 import TextareaAutosize from 'react-textarea-autosize';
-import { ActionButtonPropsType } from '../../../types/types'; 
+import { ActionButtonPropsType } from '../../../types/types';
+import { useDispatch } from 'react-redux';
+import { addList, addTask } from '../../../Store/boardSlice';
 
-const ActionButton: FC<ActionButtonPropsType> = ( {list, card} ) => {
+const ActionButton: FC<ActionButtonPropsType> = ({ list, card, boardId }) => {
   const [formOpen, openForm] = useState<boolean>(false);
   const [inputText, inputTextHandler] = useState<string>('');
+  const dispatch = useDispatch();
 
   const handleInputChange = (e: {
     target: { value: SetStateAction<string> };
   }) => {
     inputTextHandler(e.target.value);
+  };
+
+  const handleAddList = () => {
+    if (inputText !== '') {
+      dispatch(addList(inputText));
+    }
+  };
+
+  const handleAddTask = () => {
+    if (inputText !== '') {
+      dispatch(addTask({ inputText, boardId }));
+    }
   };
 
   const renderForm = () => {
@@ -29,6 +44,7 @@ const ActionButton: FC<ActionButtonPropsType> = ( {list, card} ) => {
         </Card>
         <div className={s.bottomButtonContainer}>
           <Button
+            onMouseDown={list ? handleAddList : handleAddTask}
             variant="contained"
             style={{ color: 'white', backgroundColor: '#5aac44' }}
           >

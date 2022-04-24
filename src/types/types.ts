@@ -1,4 +1,5 @@
 export interface ListPropsType {
+  boardId: number;
   title: string;
   taskList: Array<TaskListType>;
 }
@@ -15,4 +16,5 @@ export interface TaskPropsType {
 export interface ActionButtonPropsType {
   list: string;
   card: string;
+  boardId: number | null;
 }

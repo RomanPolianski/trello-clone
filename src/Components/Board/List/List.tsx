@@ -3,18 +3,26 @@ import { FC } from 'react';
 import Task from '../Task/Task';
 import s from './List.module.css';
 import ActionButton from '../../common/ActionButton/ActionButton';
+import { Droppable } from 'react-beautiful-dnd';
 
 const List: FC<ListPropsType> = ({ title, taskList, boardId }) => {
   return (
-    <div className={s.listContainer}>
-      <h2>{title}</h2>
-      {taskList.map((task) => (
-        <Task text={task.text} key={task.id} />
-      ))}
-      <div>
-        <ActionButton card="card" list="" boardId={boardId} />
-      </div>
-    </div>
+    <Droppable droppableId={boardId}>
+      {(provided) => (
+        <div
+          {...provided.droppableProps}
+          ref={provided.innerRef}
+          className={s.listContainer}
+        >
+          <h2>{title}</h2>
+          {taskList.map((task, index) => (
+            <Task text={task.text} key={task.id} id={task.id} index={index} />
+          ))}
+          <ActionButton card="card" list="" boardId={boardId} />
+          {provided.placeholder}
+        </div>
+      )}
+    </Droppable>
   );
 };
 

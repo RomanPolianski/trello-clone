@@ -4,4 +4,10 @@
 
 .listContainer {
   display: flex;
+  background-image: url("./dark-ocean-sea-water.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* height: 100vh; */
+  min-height: 800px;
+  padding: 10px;
 }

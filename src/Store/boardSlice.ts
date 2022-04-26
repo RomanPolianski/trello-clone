@@ -84,6 +84,20 @@ const boardSlice = createSlice({
         ) as Array<TaskListType>;
         board?.taskList.splice(droppableIndexEnd, 0, ...task);
       }
+
+      if (droppableIdStart !== droppableIdEnd) {
+        const boardStart = state.boards.find(
+          (board) => droppableIdStart === board.boardId
+        );
+        const task = boardStart?.taskList.splice(
+          droppableIndexStart,
+          1
+        ) as Array<TaskListType>;
+        const boardEnd = state.boards.find(
+          (board) => droppableIdEnd === board.boardId
+        );
+        boardEnd?.taskList.splice(droppableIndexEnd, 0, ...task);
+      }
     },
   },
 });

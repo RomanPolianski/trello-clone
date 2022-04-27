@@ -1,28 +1,28 @@
 import { BoardStateType, TaskListType } from './../types/types';
 import { createSlice } from '@reduxjs/toolkit';
 
-let boardId = 3;
-let taskId = 6;
+let boardId = 4;
+let taskId = 8;
 
 const initialState: BoardStateType = {
   boards: [
     {
       boardId: `board-${0}`,
-      boardName: 'Hi',
+      boardName: 'To Do',
       taskList: [
         {
           id: `task-${0}`,
-          text: 'To be done',
+          text: 'Study TS',
         },
         {
           id: `task-${1}`,
-          text: 'Done',
+          text: 'Study Sequelize',
         },
       ],
     },
     {
       boardId: `board-${1}`,
-      boardName: 'Done',
+      boardName: 'In progress',
       taskList: [
         {
           id: `task-${2}`,
@@ -34,10 +34,28 @@ const initialState: BoardStateType = {
         },
         {
           id: `task-${4}`,
-          text: 'Study sequelize',
+          text: 'Study react',
         },
       ],
     },
+    {
+        boardId: `board-${2}`,
+        boardName: 'Done',
+        taskList: [
+          {
+            id: `task-${5}`,
+            text: 'Brush cat',
+          },
+          {
+            id: `task-${6}`,
+            text: 'Get some sleep',
+          },
+          {
+            id: `task-${7}`,
+            text: 'Study CSS',
+          },
+        ],
+      },
   ],
 };
 
@@ -45,6 +63,9 @@ const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
+    addInitialVal(state, action) {
+      state.boards.push(action.payload);
+    },
     addList(state, action) {
       const newList = {
         boardId: `board-${boardId}`,

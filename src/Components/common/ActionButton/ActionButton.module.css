@@ -3,6 +3,16 @@
   cursor: pointer;
   color: rgb(128, 128, 128);
 }
+.buttonContainerList {
+  display: flex;
+  cursor: pointer;
+  color: rgb(128, 128, 128);
+  background-color: rgb(224, 224, 224);
+  width: 270px;
+  min-height: 30px;
+  border-radius: 3px;
+  padding-top: 6px;
+}
 
 .buttonText {
   margin: 0;

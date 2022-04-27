@@ -30,6 +30,9 @@ const ActionButton: FC<ActionButtonPropsType> = ({ list, card, boardId }) => {
   };
 
   const renderForm = () => {
+    const buttonText = list ? 'Add list' : 'Add task';
+    const classN = list ? s.buttonContainerList : s.buttonContainer;
+
     return (
       <div>
         <Card className={s.cardContainer}>
@@ -48,7 +51,7 @@ const ActionButton: FC<ActionButtonPropsType> = ({ list, card, boardId }) => {
             variant="contained"
             style={{ color: 'white', backgroundColor: '#5aac44' }}
           >
-            Add Card
+            {buttonText}
           </Button>
           <Icon>close</Icon>
         </div>
@@ -67,9 +70,11 @@ const ActionButton: FC<ActionButtonPropsType> = ({ list, card, boardId }) => {
 
   const renderAddButton = () => {
     const buttonText = list ? 'Add list' : 'Add another task';
-
     return (
-      <div className={s.buttonContainer} onClick={openFormHandler}>
+      <div
+        className={list ? s.buttonContainerList : s.buttonContainer}
+        onClick={openFormHandler}
+      >
         <Icon>add</Icon>
         <p className={s.buttonText}>{buttonText}</p>
       </div>

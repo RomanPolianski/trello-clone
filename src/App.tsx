@@ -5,6 +5,7 @@ import ActionButton from './Components/common/ActionButton/ActionButton';
 import { RootState } from './Store/redux-store';
 import { DragDropContext, DropResult } from 'react-beautiful-dnd';
 import { dragHappened } from './Store/boardSlice';
+import Header from './Components/Header/Header';
 
 const App = () => {
   const lists = useSelector((state: RootState) => state.board.boards);
@@ -26,21 +27,24 @@ const App = () => {
   };
 
   return (
-    <DragDropContext onDragEnd={onDragEnd}>
-      <div className="listContainer">
-        {lists.map((list) => (
-          <List
-            boardId={list.boardId}
-            key={list.boardId}
-            title={list.boardName}
-            taskList={list.taskList}
-          />
-        ))}
-        <div>
-          <ActionButton list="list" card="" boardId={null} />
+    <div>
+      <Header />
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="listContainer">
+          {lists.map((list) => (
+            <List
+              boardId={list.boardId}
+              key={list.boardId}
+              title={list.boardName}
+              taskList={list.taskList}
+            />
+          ))}
+          <div>
+            <ActionButton list="list" card="" boardId={null} />
+          </div>
         </div>
-      </div>
-    </DragDropContext>
+      </DragDropContext>
+    </div>
   );
 };
 

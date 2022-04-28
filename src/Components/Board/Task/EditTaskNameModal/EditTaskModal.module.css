@@ -1,0 +1,109 @@
+.modalContainer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+.modal {
+  background-color: rgba(225, 225, 225, 0.45);
+  width: calc(25% + 15vw);
+  height: auto;
+  padding: 2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(2px);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, .2);
+}
+.modalHeader {
+  position: relative;
+  border-bottom: 1px solid #ddd;
+}
+.modalTitle {
+  text-align: center;
+}
+.modalClose {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: none;
+}
+.modalContent {
+  border-bottom: 1px solid #ddd;
+  padding: 2rem 0;
+}
+.modalFooter {
+  padding: 2rem 0;
+  padding-bottom: 0;
+}
+button {
+  float: right;
+  padding: 0.5rem;
+  border-radius: 8px;
+  margin-left: 10px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+.editTextArea {
+  overflow-wrap: break-word;
+  resize: none;
+  height: 100px;
+  border: none;
+  border-radius: 3px;
+  font-family: inherit;
+  color: #172b4d;
+  width: 300px;
+  font-size: 14px;
+  font-weight: 900;
+}
+.editTextArea:focus {
+  outline: 0;
+}
+.removeTaskButton {
+  background: rgba(255, 57, 57, 0.6);
+  width: 40%;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 3px;
+  clear: both;
+  color: #e6e6e6;
+  float: left;
+  cursor: pointer;
+  margin: 7px 0 8px 8px;
+  padding: 10px 14px 10px 8px;
+  text-decoration: none;
+}
+.removeTaskIcon::before {
+  content: ' \2716 ';
+  color: #e6e6e6;
+  position: relative;
+  bottom: 0px;
+  left: 0;
+  font-size: 14px;
+}
+.removeTaskText {
+  margin-left: 5px;
+}
+.closeModalIcon::before {
+  content: ' \2716 ';
+  position: relative;
+  font-weight: 100;
+  background: none;
+}
+
+.modalSubmit {
+  background: rgba(69, 0, 230, 0.6);
+  width: 200px;
+  border: none;
+  font-weight: 700;
+  border-radius: 3px;
+  color: #e6e6e6;
+  margin: 7px 0 8px 8px;
+  padding: 10px 14px 10px 8px;
+  text-decoration: none;
+}

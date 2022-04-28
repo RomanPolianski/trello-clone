@@ -56,7 +56,7 @@ button {
   border-radius: 3px;
   font-family: inherit;
   color: #172b4d;
-  width: 300px;
+  width: calc(60% + 15vw);
   font-size: 14px;
   font-weight: 900;
 }

@@ -11,3 +11,9 @@ h2 {
   margin: 7px 0;
   color: rgb(63, 63, 63);
 }
+
+.deleteIcon {
+  float: right;
+  padding-top: 10px;
+  cursor: pointer;
+}

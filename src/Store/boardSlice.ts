@@ -5,7 +5,6 @@ let boardId = 4;
 let taskId = 8;
 
 const initialState: BoardStateType = {
-  modalActive: false,
   boards: [
     {
       boardId: `board-${0}`,
@@ -37,12 +36,14 @@ const initialState: BoardStateType = {
         {
           id: `task-${3}`,
           text: 'Get some sleep',
-          description: 'Getting enought sleep is essential for any human. Make sure you sleep at least 7 hours a day.',
+          description:
+            'Getting enought sleep is essential for any human. Make sure you sleep at least 7 hours a day.',
         },
         {
           id: `task-${4}`,
           text: 'Study react',
-          description: 'Who can even imagine web development without this technology!?',
+          description:
+            'Who can even imagine web development without this technology!?',
         },
       ],
     },
@@ -74,9 +75,6 @@ const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    setModalActive(state, action) {
-      state.modalActive = action.payload;
-    },
     addList(state, action) {
       const newList = {
         boardId: `board-${boardId}`,
@@ -117,6 +115,14 @@ const boardSlice = createSlice({
         list?.taskList.splice(index, 1);
       }
     },
+    deleteBoard(state, action) {
+      const index = state.boards.find(
+        (board) => board.boardId === action.payload.boardId
+      ) as unknown as number;
+      if (index !== -1) {
+        state.boards?.splice(index, 1);
+      }
+    },
     dragHappened(state, action) {
       const {
         droppableIdStart,
@@ -154,13 +160,7 @@ const boardSlice = createSlice({
   },
 });
 
-export const {
-  addList,
-  addTask,
-  dragHappened,
-  setModalActive,
-  editTask,
-  deleteTask,
-} = boardSlice.actions;
+export const { addList, addTask, dragHappened, editTask, deleteTask, deleteBoard } =
+  boardSlice.actions;
 
 export default boardSlice.reducer;

@@ -25,7 +25,6 @@ export interface ActionButtonPropsType {
 }
 
 export interface BoardStateType {
-  modalActive: boolean,
   boards: Array<BoardType>;
 }
 

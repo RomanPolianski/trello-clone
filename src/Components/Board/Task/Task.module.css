@@ -1,3 +1,7 @@
 .cardContainer {
   margin-bottom: 10px;
 }
+.editIcon {
+  float: right;
+  padding: 7px;
+}

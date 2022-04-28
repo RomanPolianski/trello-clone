@@ -85,7 +85,7 @@ const Header = () => {
           <input
             className={s.searchInput}
             type="text"
-            placeholder="Поиск"
+            placeholder="Search"
           />
         </div>
         <div>

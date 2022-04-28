@@ -16,7 +16,7 @@ const List: FC<ListPropsType> = ({ title, taskList, boardId }) => {
         >
           <h2>{title}</h2>
           {taskList.map((task, index) => (
-            <Task text={task.text} key={task.id} id={task.id} index={index} boardId={boardId}/>
+            <Task text={task.text} key={task.id} id={task.id} index={index} boardId={boardId} description={task.description}/>
           ))}
           <ActionButton card="card" list="" boardId={boardId} />
           {provided.placeholder}

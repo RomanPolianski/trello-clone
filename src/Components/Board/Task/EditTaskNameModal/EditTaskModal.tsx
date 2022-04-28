@@ -17,13 +17,16 @@ const EditTaskNameModal: FC<EditTaskNameModalPropsType> = ({
   open,
   close,
   taskName,
+  description
 }) => {
   const [taskNameValue, setTaskNameValue] = useState<string>(taskName);
+  const [taskDescription, setTaskDescription] = useState<string>(description);
+
   const dispatch = useDispatch();
   const editTaskHandler = (e: React.FormEvent<EventTarget>) => {
     e.preventDefault();
     if (taskNameValue.trim() !== '') {
-      dispatch(editTask({ boardId, taskId, taskName: taskNameValue }));
+      dispatch(editTask({ boardId, taskId, description ,taskName: taskNameValue }));
     }
     close();
   };
@@ -52,6 +55,14 @@ const EditTaskNameModal: FC<EditTaskNameModalPropsType> = ({
                   className={s.editTextArea}
                   onChange={(e) => setTaskNameValue(e.target.value)}
                   value={taskNameValue}
+                />
+              </div>
+              <h4>Task Description</h4>
+              <div className={s.editTextArea}>
+                <textarea
+                  className={s.editTextArea}
+                  onChange={(e) => setTaskDescription(e.target.value)}
+                  value={taskDescription}
                 />
               </div>
             </main>

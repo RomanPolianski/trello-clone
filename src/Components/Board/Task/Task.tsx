@@ -8,7 +8,7 @@ import { Draggable } from 'react-beautiful-dnd';
 import EditIcon from '@material-ui/icons/Edit';
 import EditTaskNameModal from './EditTaskNameModal/EditTaskModal';
 
-const Task: FC<TaskPropsType> = ({ text, id, index, boardId }) => {
+const Task: FC<TaskPropsType> = ({ text, id, index, boardId, description }) => {
   const [open, setOpen] = useState<boolean>(false);
   const toggle = () => setOpen(!open);
 
@@ -37,6 +37,7 @@ const Task: FC<TaskPropsType> = ({ text, id, index, boardId }) => {
         boardId={boardId}
         taskId={id}
         taskName={text}
+        description={description}
       />
     </div>
   );

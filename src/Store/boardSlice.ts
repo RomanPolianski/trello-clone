@@ -14,10 +14,14 @@ const initialState: BoardStateType = {
         {
           id: `task-${0}`,
           text: 'Study TS',
+          description:
+            'Knowledge of TypeScript is a key to success in modern world of technologies. So its a must',
         },
         {
           id: `task-${1}`,
           text: 'Study Sequelize',
+          description:
+            'Study sequelize using official documentation. Being able to run seeds, migrations, and of course create models',
         },
       ],
     },
@@ -28,14 +32,17 @@ const initialState: BoardStateType = {
         {
           id: `task-${2}`,
           text: 'Brush cat',
+          description: 'Cat loves when owner brushes hair',
         },
         {
           id: `task-${3}`,
           text: 'Get some sleep',
+          description: 'Getting enought sleep is essential for any human. Make sure you sleep at least 7 hours a day.',
         },
         {
           id: `task-${4}`,
           text: 'Study react',
+          description: 'Who can even imagine web development without this technology!?',
         },
       ],
     },
@@ -45,15 +52,18 @@ const initialState: BoardStateType = {
       taskList: [
         {
           id: `task-${5}`,
-          text: 'Brush dog',
+          text: 'Walk the dog',
+          description: 'Dogs love it',
         },
         {
           id: `task-${6}`,
           text: 'Get some more sleep',
+          description: 'Why not?',
         },
         {
           id: `task-${7}`,
           text: 'Study CSS',
+          description: 'A must have tool!',
         },
       ],
     },
@@ -80,6 +90,7 @@ const boardSlice = createSlice({
       const newTask = {
         id: `task-${taskId}`,
         text: action.payload.inputText,
+        description: '',
       };
       taskId += 1;
 
@@ -92,6 +103,7 @@ const boardSlice = createSlice({
         .find((board) => board.boardId === action.payload.boardId)
         ?.taskList.find((t) => t.id === action.payload.taskId);
       task!.text = action.payload.taskName;
+      task!.description = action.payload.description;
     },
     deleteTask(state, action) {
       const list = state.boards.find(
@@ -142,7 +154,13 @@ const boardSlice = createSlice({
   },
 });
 
-export const { addList, addTask, dragHappened, setModalActive, editTask, deleteTask } =
-  boardSlice.actions;
+export const {
+  addList,
+  addTask,
+  dragHappened,
+  setModalActive,
+  editTask,
+  deleteTask,
+} = boardSlice.actions;
 
 export default boardSlice.reducer;

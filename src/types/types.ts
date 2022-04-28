@@ -7,6 +7,7 @@ export interface ListPropsType {
 export interface TaskListType {
   id: string;
   text: string;
+  description: string;
 }
 
 export interface TaskPropsType {
@@ -14,6 +15,7 @@ export interface TaskPropsType {
   id: string;
   index: number;
   boardId: string;
+  description: string;
 }
 
 export interface ActionButtonPropsType {
@@ -44,4 +46,5 @@ export interface EditTaskNameModalPropsType {
     taskName: string;
     open: boolean;
     close: Function;
+    description: string;
 }

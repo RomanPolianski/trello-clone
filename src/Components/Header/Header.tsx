@@ -4,6 +4,9 @@ const Header = () => {
   return (
     <div className={s.headerContainer}>
       <div className={s.leftHeaderContainer}>
+        <div className={s.trelloLogoContainer}>
+          <div className={s.trelloLogo} />
+        </div>
         <button className={s.headerButton} type="button">
           <span>Boards</span>
           <span className={s.buttonArrow}>
@@ -82,11 +85,7 @@ const Header = () => {
       </div>
       <div className={s.rightHeaderContainer}>
         <div>
-          <input
-            className={s.searchInput}
-            type="text"
-            placeholder="Search"
-          />
+          <input className={s.searchInput} type="text" placeholder="Search" />
         </div>
         <div>
           <button className={s.rightHeaderButton} type="button">

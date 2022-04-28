@@ -13,6 +13,7 @@ export interface TaskPropsType {
   text: string;
   id: string;
   index: number;
+  boardId: string;
 }
 
 export interface ActionButtonPropsType {
@@ -22,6 +23,7 @@ export interface ActionButtonPropsType {
 }
 
 export interface BoardStateType {
+  modalActive: boolean,
   boards: Array<BoardType>;
 }
 
@@ -34,4 +36,12 @@ export interface BoardType {
 export interface TaskListType {
   id: string;
   text: string;
+}
+
+export interface EditTaskNameModalPropsType {
+    boardId: string;
+    taskId: string;
+    taskName: string;
+    open: boolean;
+    close: Function;
 }

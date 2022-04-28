@@ -5,6 +5,7 @@ let boardId = 4;
 let taskId = 8;
 
 const initialState: BoardStateType = {
+  modalActive: false,
   boards: [
     {
       boardId: `board-${0}`,
@@ -39,23 +40,23 @@ const initialState: BoardStateType = {
       ],
     },
     {
-        boardId: `board-${2}`,
-        boardName: 'Done',
-        taskList: [
-          {
-            id: `task-${5}`,
-            text: 'Brush cat',
-          },
-          {
-            id: `task-${6}`,
-            text: 'Get some sleep',
-          },
-          {
-            id: `task-${7}`,
-            text: 'Study CSS',
-          },
-        ],
-      },
+      boardId: `board-${2}`,
+      boardName: 'Done',
+      taskList: [
+        {
+          id: `task-${5}`,
+          text: 'Brush dog',
+        },
+        {
+          id: `task-${6}`,
+          text: 'Get some more sleep',
+        },
+        {
+          id: `task-${7}`,
+          text: 'Study CSS',
+        },
+      ],
+    },
   ],
 };
 
@@ -63,8 +64,8 @@ const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    addInitialVal(state, action) {
-      state.boards.push(action.payload);
+    setModalActive(state, action) {
+      state.modalActive = action.payload;
     },
     addList(state, action) {
       const newList = {
@@ -85,6 +86,24 @@ const boardSlice = createSlice({
       const list = state.boards
         .find((board) => board.boardId === action.payload.boardId)
         ?.taskList.push(newTask);
+    },
+    editTask(state, action) {
+      const task = state.boards
+        .find((board) => board.boardId === action.payload.boardId)
+        ?.taskList.find((t) => t.id === action.payload.taskId);
+      task!.text = action.payload.taskName;
+    },
+    deleteTask(state, action) {
+      const list = state.boards.find(
+        (board) => board.boardId === action.payload.boardId
+      );
+
+      const index = list?.taskList?.findIndex(
+        (task) => task.id === action.payload.taskId
+      ) as number;
+      if (index !== -1) {
+        list?.taskList.splice(index, 1);
+      }
     },
     dragHappened(state, action) {
       const {
@@ -123,6 +142,7 @@ const boardSlice = createSlice({
   },
 });
 
-export const { addList, addTask, dragHappened } = boardSlice.actions;
+export const { addList, addTask, dragHappened, setModalActive, editTask, deleteTask } =
+  boardSlice.actions;
 
 export default boardSlice.reducer;

@@ -50,7 +50,7 @@ export interface EditTaskNameModalPropsType {
 // ============ action types
 
 export interface addTaskActionType {
-  boardId: string;
+  boardId: string | null;
   inputText: string;
 }
 

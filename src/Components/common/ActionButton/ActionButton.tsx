@@ -6,7 +6,7 @@ import { ActionButtonPropsType } from '../../../types/types';
 import { useDispatch } from 'react-redux';
 import { addList, addTask } from '../../../Store/boardSlice';
 
-const ActionButton: FC<ActionButtonPropsType> = ({ list, card, boardId }) => {
+const ActionButton: FC<ActionButtonPropsType> = ({ list, boardId }) => {
   const [formOpen, openForm] = useState<boolean>(false);
   const [inputText, inputTextHandler] = useState<string>('');
   const dispatch = useDispatch();

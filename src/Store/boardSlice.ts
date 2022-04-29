@@ -1,5 +1,5 @@
-import { BoardStateType, TaskListType } from './../types/types';
-import { createSlice } from '@reduxjs/toolkit';
+import { addTaskActionType, BoardStateType, deleteTaskActionType, dragHappenedActionType, editTaskActionType, TaskListType } from './../types/types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 let boardId = 4;
 let taskId = 8;
@@ -75,41 +75,41 @@ const boardSlice = createSlice({
   name: 'board',
   initialState,
   reducers: {
-    addList(state, action) {
+    addList(state, { payload }: PayloadAction<string>) {
       const newList = {
         boardId: `board-${boardId}`,
         taskList: [],
-        boardName: action.payload,
+        boardName: payload,
       };
       boardId += 1;
       state.boards.push(newList);
     },
-    addTask(state, action) {
+    addTask(state, { payload }: PayloadAction<addTaskActionType>) {
       const newTask = {
         id: `task-${taskId}`,
-        text: action.payload.inputText,
+        text: payload.inputText,
         description: '',
       };
       taskId += 1;
 
       const list = state.boards
-        .find((board) => board.boardId === action.payload.boardId)
+        .find((board) => board.boardId === payload.boardId)
         ?.taskList.push(newTask);
     },
-    editTask(state, action) {
+    editTask(state, { payload }: PayloadAction<editTaskActionType>) {
       const task = state.boards
-        .find((board) => board.boardId === action.payload.boardId)
-        ?.taskList.find((t) => t.id === action.payload.taskId);
-      task!.text = action.payload.taskName;
-      task!.description = action.payload.description;
+        .find((board) => board.boardId === payload.boardId)
+        ?.taskList.find((t) => t.id === payload.taskId);
+      task!.text = payload.taskName;
+      task!.description = payload.description;
     },
-    deleteTask(state, action) {
+    deleteTask(state, { payload }: PayloadAction<deleteTaskActionType>) {
       const list = state.boards.find(
-        (board) => board.boardId === action.payload.boardId
+        (board) => board.boardId === payload.boardId
       );
 
       const index = list?.taskList?.findIndex(
-        (task) => task.id === action.payload.taskId
+        (task) => task.id === payload.taskId
       ) as number;
       if (index !== -1) {
         list?.taskList.splice(index, 1);
@@ -119,22 +119,22 @@ const boardSlice = createSlice({
       const index = state.boards.find(
         (board) => board.boardId === action.payload.boardId
       ) as unknown as number;
+
       if (index !== -1) {
         state.boards?.splice(index, 1);
       }
     },
-    dragHappened(state, action) {
+    dragHappened(state, { payload }: PayloadAction<dragHappenedActionType>) {
       const {
         droppableIdStart,
         droppableIdEnd,
         droppableIndexEnd,
         droppableIndexStart,
-        draggableId,
-      } = action.payload;
+      } = payload;
 
       if (droppableIdStart === droppableIdEnd) {
         const board = state.boards.find(
-          (board) => droppableIdStart === board.boardId
+          (board) => droppableIdStart.toString() === board.boardId
         );
         const task = board?.taskList.splice(
           droppableIndexStart,
@@ -145,14 +145,14 @@ const boardSlice = createSlice({
 
       if (droppableIdStart !== droppableIdEnd) {
         const boardStart = state.boards.find(
-          (board) => droppableIdStart === board.boardId
+          (board) => droppableIdStart.toString() === board.boardId
         );
         const task = boardStart?.taskList.splice(
           droppableIndexStart,
           1
         ) as Array<TaskListType>;
         const boardEnd = state.boards.find(
-          (board) => droppableIdEnd === board.boardId
+          (board) => droppableIdEnd.toString() === board.boardId
         );
         boardEnd?.taskList.splice(droppableIndexEnd, 0, ...task);
       }
